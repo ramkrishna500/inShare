@@ -14,17 +14,22 @@ connectDB();
 
 //cores setup
 const corsOption={
-    origin:env.process.ALLOWED_CLIENTS.split(",")
+    origin:process.env.ALLOWED_CLIENTS.split(",")
     //[localhost:3000,localhost:5000....]
 }
 
 app.use(cors(corsOption));
+//
+
+
 //template engine
 app.set("views",path.join(__dirname,"/views"));
 app.set("view engine","ejs");
 
+
+
 //routes
-app.use("/api/files",require("./routes/files"));
+app.use("/",require("./routes/files"));
 app.use("/files",require("./routes/show"));
 app.use("/files/download",require("./routes/download"));
 
